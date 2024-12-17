@@ -1,0 +1,36 @@
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8088:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    image: php:fpm
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - mongodb
+      - composer
+
+  composer:
+    image: composer:latest
+    volumes:
+      - ./app:/app # Mount your application directory
+    working_dir: /app # Set the working directory inside the container
+    command: ["install"] # Run 'composer install' by default
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root  # Replace with your username
+      MONGO_INITDB_ROOT_PASSWORD: S3cr3t # Replace with your password
+      MONGO_INITDB_DATABASE: demo # Replace with your database name
+
+
