@@ -10,7 +10,7 @@ services:
       - php
 
   php:
-    image: php:fpm
+    build: .
     volumes:
       - ./app:/var/www/html
     depends_on:
