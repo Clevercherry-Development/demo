@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Circuits;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class CircuitsController extends Controller
 {
@@ -59,9 +59,6 @@ class CircuitsController extends Controller
 
     public function apiCreate(Request $request) // Add this method
     {
-        dd($request->all());
-        return;
-
         // Validate the request data (important!)
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -71,6 +68,8 @@ class CircuitsController extends Controller
             'location' => 'required|string|max:255',
             'active' => 'required|boolean',
         ]);
+
+        return response()->json($validatedData, 201);
 
         // Create the new circuit
         $circuit = Circuits::create($validatedData);
