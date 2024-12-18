@@ -35,5 +35,22 @@ cd demo
 docker compose up --build -d
 ```
 
-you should not have a basic app running at http://localhost:8088 that can be accessed on your local machine.
+you should not have a basic app running at http://localhost:8088 that can be accessed on your local machine. To complete the install of Laravel do the following.
+
+Ensure that the connection to MongoDB is defined in your .env file as shown, along with the database name and the default connection set to mongodb. The username and password is the one defined in the `docker-compose.yaml` file in the mongodb service
+
+```
+DB_CONNECTION=mongodb
+MONGODB_URI="mongodb://<user>:<password>@mongodb:27017"
+MONGODB_DATABASE="<db_name>"
+```
+
+Once this is done, run the following in a command prompt when in the root folder of your project
+
+```
+docker compose exec php bash
+composer update
+php artisan migrate
+php artisan db:seed
+```
 
