@@ -28,9 +28,14 @@ services:
     image: mongo:latest
     ports:
       - "27018:27017"
+    volumes:
+      - mongodb_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root  # Replace with your username
       MONGO_INITDB_ROOT_PASSWORD: S3cr3t # Replace with your password
       MONGO_INITDB_DATABASE: demo # Replace with your database name
+
+volumes:
+  mongodb_data:
 
 

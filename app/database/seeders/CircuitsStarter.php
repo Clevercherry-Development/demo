@@ -22,6 +22,7 @@ class CircuitsStarter extends Seeder
             'laps' => 44,
             'distance' => 7.004,
             'location' => 'Belgium',
+            'active' => true
         ]);
 
         Circuits::create([
@@ -30,6 +31,7 @@ class CircuitsStarter extends Seeder
             'laps' => 52,
             'distance' => 5.891,
             'location' => 'United Kingdom',
+            'active' => true
         ]);
 
         Circuits::create([
@@ -38,6 +40,7 @@ class CircuitsStarter extends Seeder
             'laps' => 56,
             'distance' => 5.513,
             'location' => 'USA',
+            'active' => true
         ]);
     }
 }
